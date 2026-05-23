@@ -6,12 +6,21 @@ const itineraryRoutes = require('./routes/itinerary');
 
 const app = express();
 
-// Middleware
-app.use(cors({
-  origin: '*', // Allow all origins for simplicity (development)
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization', 'x-gemini-key']
-}));
+// CORS - allow all origins (needed for Railway + Vercel)
+const corsOptions = {
+  origin: function (origin, callback) {
+    // Allow requests with no origin (mobile apps, curl, Postman)
+    // and all browser origins
+    callback(null, true);
+  },
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS', 'PATCH'],
+  allowedHeaders: ['Content-Type', 'Authorization', 'x-gemini-key', 'Accept'],
+  credentials: false
+};
+app.use(cors(corsOptions));
+
+// Handle preflight OPTIONS requests explicitly
+app.options('*', cors(corsOptions));
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
