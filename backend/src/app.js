@@ -6,20 +6,25 @@ const itineraryRoutes = require('./routes/itinerary');
 
 const app = express();
 
-// CORS - allow all origins (needed for Railway + Vercel)
+// CORS - manually set headers first (Railway proxy safe)
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS, PATCH');
+  res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, x-gemini-key, Accept');
+  // Handle preflight immediately
+  if (req.method === 'OPTIONS') {
+    return res.status(200).end();
+  }
+  next();
+});
+
+// Also use cors library as backup
 const corsOptions = {
-  origin: function (origin, callback) {
-    // Allow requests with no origin (mobile apps, curl, Postman)
-    // and all browser origins
-    callback(null, true);
-  },
+  origin: '*',
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS', 'PATCH'],
   allowedHeaders: ['Content-Type', 'Authorization', 'x-gemini-key', 'Accept'],
-  credentials: false
 };
 app.use(cors(corsOptions));
-
-// Handle preflight OPTIONS requests explicitly
 app.options('*', cors(corsOptions));
 
 app.use(express.json());
