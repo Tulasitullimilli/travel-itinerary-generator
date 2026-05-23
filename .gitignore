@@ -1,0 +1,23 @@
+# Dependencies - these are huge and can be reinstalled
+node_modules/
+
+# Environment files - contains secret keys, NEVER upload these
+.env
+.env.local
+.env.production
+
+# Uploaded files - user data, shouldn't be in git
+uploads/*
+!uploads/.gitkeep
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Build output
+dist/
+build/
+
+# Logs
+*.log
+npm-debug.log*
