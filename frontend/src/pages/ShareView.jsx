@@ -106,7 +106,7 @@ const ShareView = () => {
     <div className="min-h-screen bg-slate-950 text-slate-100 font-sans print:bg-white print:text-slate-900 pb-16">
       
       {/* HEADER BAR (hidden in print) */}
-      <nav className="h-20 border-b border-slate-900 px-8 flex items-center justify-between print:hidden">
+      <nav className="h-auto md:h-20 py-4 md:py-0 border-b border-slate-900 px-4 md:px-8 flex flex-col md:flex-row items-center justify-between gap-4 print:hidden">
         <div className="flex items-center gap-3 cursor-pointer" onClick={() => navigate('/')}>
           <div className="h-10 w-10 items-center justify-center flex rounded-xl bg-gradient-to-tr from-sky-500 to-indigo-600 shadow-md">
             <Compass className="h-6 w-6 text-white" />
@@ -136,7 +136,7 @@ const ShareView = () => {
       </nav>
 
       {/* CORE DISPLAY */}
-      <div className="max-w-4xl w-full mx-auto px-6 mt-10 print:mt-0 print:px-0">
+      <div className="max-w-4xl w-full mx-auto px-4 md:px-6 mt-6 md:mt-10 print:mt-0 print:px-0">
         
         {/* Banner Details */}
         <div className="border-b border-slate-900 print:border-slate-300 pb-6 mb-8">

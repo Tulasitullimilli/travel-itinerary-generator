@@ -247,10 +247,10 @@ const Dashboard = () => {
   };
 
   return (
-    <div className="flex min-h-screen bg-slate-950 text-slate-100 font-sans">
+    <div className="flex flex-col md:flex-row min-h-screen bg-slate-950 text-slate-100 font-sans">
       
       {/* SIDEBAR: Past Trips */}
-      <aside className="w-80 border-r border-slate-900 bg-slate-900/20 p-6 flex flex-col shrink-0">
+      <aside className="w-full md:w-80 border-b md:border-b-0 md:border-r border-slate-900 bg-slate-900/20 p-6 flex flex-col shrink-0">
         <div className="flex items-center gap-3 mb-8">
           <div className="h-10 w-10 items-center justify-center flex rounded-xl bg-gradient-to-tr from-sky-500 to-indigo-600 shadow-md shadow-sky-500/10">
             <Compass className="h-6 w-6 text-white" />
@@ -329,7 +329,7 @@ const Dashboard = () => {
       <main className="flex-1 flex flex-col min-w-0">
         
         {/* HEADER */}
-        <header className="h-20 border-b border-slate-900 px-8 flex items-center justify-between">
+        <header className="h-auto md:h-20 py-4 md:py-0 border-b border-slate-900 px-4 md:px-8 flex flex-col md:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-3">
             {/* Status indicator */}
             <span className={`inline-flex items-center gap-1.5 rounded-full px-2.5 py-0.5 text-xs font-semibold ${
@@ -352,7 +352,7 @@ const Dashboard = () => {
         </header>
 
         {/* CONTENT PANELS */}
-        <div className="flex-1 overflow-y-auto p-8 max-w-5xl w-full mx-auto">
+        <div className="flex-1 overflow-y-auto p-4 md:p-8 max-w-5xl w-full mx-auto">
           
           {!activeItinerary ? (
             /* CREATE TRIP WORKFLOW */
